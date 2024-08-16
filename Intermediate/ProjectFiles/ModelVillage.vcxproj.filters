@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <None Include="..\..\ModelVillage.uproject" />
+    <Filter Include="Source">
+      <UniqueIdentifier>{F31BBDD1-B3E8-3BCC-9652-680E16935819}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Source\ModelVillage.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <None Include="..\..\Source\ModelVillageEditor.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <Filter Include="Config">
+      <UniqueIdentifier>{FA535FFB-25E1-3D20-B416-52F9BE21E06E}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Config\DefaultEditor.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultEditorPerProjectUserSettings.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultEngine.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultGame.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultInput.ini">
+      <Filter>Config</Filter>
+    </None>
+    <Filter Include="Source\ModelVillage">
+      <UniqueIdentifier>{1FE144C8-7930-35B6-96E8-F6F5DB4E5376}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Source\ModelVillage\ModelVillage.Build.cs">
+      <Filter>Source\ModelVillage</Filter>
+    </None>
+    <ClCompile Include="..\..\Source\ModelVillage\ModelVillage.cpp">
+      <Filter>Source\ModelVillage</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\ModelVillage\ModelVillage.h">
+      <Filter>Source\ModelVillage</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\ModelVillage\ModelVillageCharacter.cpp">
+      <Filter>Source\ModelVillage</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\ModelVillage\ModelVillageCharacter.h">
+      <Filter>Source\ModelVillage</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\ModelVillage\ModelVillageGameMode.cpp">
+      <Filter>Source\ModelVillage</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\ModelVillage\ModelVillageGameMode.h">
+      <Filter>Source\ModelVillage</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\ModelVillage\ModelVillagePlayerController.cpp">
+      <Filter>Source\ModelVillage</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\ModelVillage\ModelVillagePlayerController.h">
+      <Filter>Source\ModelVillage</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\ModelVillage\ModelVillageProjectile.cpp">
+      <Filter>Source\ModelVillage</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\ModelVillage\ModelVillageProjectile.h">
+      <Filter>Source\ModelVillage</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\ModelVillage\TP_PickUpComponent.cpp">
+      <Filter>Source\ModelVillage</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\ModelVillage\TP_PickUpComponent.h">
+      <Filter>Source\ModelVillage</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\ModelVillage\TP_WeaponComponent.cpp">
+      <Filter>Source\ModelVillage</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\ModelVillage\TP_WeaponComponent.h">
+      <Filter>Source\ModelVillage</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

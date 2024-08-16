@@ -1,0 +1,14 @@
+{
+	"Targets": [
+		{
+			"Name": "ModelVillage",
+			"Path": "..\\Source\\ModelVillage.Target.cs",
+			"Type": "Game"
+		},
+		{
+			"Name": "ModelVillageEditor",
+			"Path": "..\\Source\\ModelVillageEditor.Target.cs",
+			"Type": "Editor"
+		}
+	]
+}
