@@ -153,7 +153,7 @@ protected:
 
 private:
 	int8 m_PreviewRotation = 0;
-	int8 m_TileTypeSelection = 1;
+	int8 m_TileTypeSelection = 2;
 
 	TArray<FName> TileTypeMap;
 };
