@@ -11,6 +11,9 @@
     <None Include="..\..\Source\ModelVillageEditor.Target.cs">
       <Filter>Source</Filter>
     </None>
+    <None Include="..\..\.gitattributes" />
+    <None Include="..\..\.gitignore" />
+    <None Include="..\..\.vsconfig" />
     <Filter Include="Config">
       <UniqueIdentifier>{FA535FFB-25E1-3D20-B416-52F9BE21E06E}</UniqueIdentifier>
     </Filter>
@@ -32,6 +35,24 @@
     <Filter Include="Source\ModelVillage">
       <UniqueIdentifier>{1FE144C8-7930-35B6-96E8-F6F5DB4E5376}</UniqueIdentifier>
     </Filter>
+    <ClCompile Include="..\..\Source\ModelVillage\APTG_PlaceableTileGrid.cpp">
+      <Filter>Source\ModelVillage</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\ModelVillage\APTG_PlaceableTileGrid.h">
+      <Filter>Source\ModelVillage</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\ModelVillage\APT_PlaceableTile.cpp">
+      <Filter>Source\ModelVillage</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\ModelVillage\APT_PlaceableTile.h">
+      <Filter>Source\ModelVillage</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\ModelVillage\C_NPC.cpp">
+      <Filter>Source\ModelVillage</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\ModelVillage\C_NPC.h">
+      <Filter>Source\ModelVillage</Filter>
+    </ClInclude>
     <None Include="..\..\Source\ModelVillage\ModelVillage.Build.cs">
       <Filter>Source\ModelVillage</Filter>
     </None>
@@ -63,6 +84,9 @@
       <Filter>Source\ModelVillage</Filter>
     </ClCompile>
     <ClInclude Include="..\..\Source\ModelVillage\ModelVillageProjectile.h">
+      <Filter>Source\ModelVillage</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\ModelVillage\S_TileType.h">
       <Filter>Source\ModelVillage</Filter>
     </ClInclude>
     <ClCompile Include="..\..\Source\ModelVillage\TP_PickUpComponent.cpp">

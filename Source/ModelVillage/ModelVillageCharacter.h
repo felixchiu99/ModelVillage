@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "Logging/LogMacros.h"
+#include "Engine/DataTable.h"
 #include "ModelVillageCharacter.generated.h"
 
 class UInputComponent;
@@ -13,6 +14,10 @@ class UCameraComponent;
 class UInputAction;
 class UInputMappingContext;
 struct FInputActionValue;
+
+class AAPT_PlaceableTile;
+class AAPTG_PlaceableTileGrid;
+struct FS_TileType;
 
 DECLARE_LOG_CATEGORY_EXTERN(LogTemplateCharacter, Log, All);
 
@@ -29,6 +34,10 @@ class AModelVillageCharacter : public ACharacter
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
 	UCameraComponent* FirstPersonCameraComponent;
 
+	/* Placeable preview*/
+	UPROPERTY(VisibleDefaultsOnly, Category = Mesh)
+	UStaticMeshComponent* PlaceablePreviewMesh;
+
 	/** MappingContext */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=Input, meta=(AllowPrivateAccess = "true"))
 	UInputMappingContext* DefaultMappingContext;
@@ -37,9 +46,25 @@ class AModelVillageCharacter : public ACharacter
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=Input, meta=(AllowPrivateAccess = "true"))
 	UInputAction* JumpAction;
 
+	/** Interact Input Action */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
+	UInputAction* InteractAction;
+
+	/** Rotate Input Action */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
+	UInputAction* RotateAction;
+
 	/** Move Input Action */
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=Input, meta=(AllowPrivateAccess = "true"))
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta=(AllowPrivateAccess = "true"))
 	UInputAction* MoveAction;
+
+	/** TileType DataTable */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = TileType, meta = (AllowPrivateAccess = "true"))
+	UDataTable* TileTypeTable;
+
+	/* Current TileType*/
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Tiles", meta = (OnlyPlaceable, AllowPrivateAccess = "true"))
+	TSubclassOf<AAPT_PlaceableTile>	TileType;
 	
 public:
 	AModelVillageCharacter();
@@ -47,6 +72,8 @@ public:
 protected:
 	virtual void BeginPlay();
 
+		// Called every frame
+	virtual void Tick(float DeltaTime) override;
 public:
 		
 	/** Look Input Action */
@@ -66,11 +93,42 @@ public:
 	bool GetHasRifle();
 
 protected:
+	void InitTileType();
+
+	void SetTileType(FS_TileType* row);
+
 	/** Called for movement input */
 	void Move(const FInputActionValue& Value);
 
 	/** Called for looking input */
 	void Look(const FInputActionValue& Value);
+
+	/** Called for Interact input */
+	void Interact(const FInputActionValue& Value);
+
+	/** Called for Rotate input */
+	void Rotate(const FInputActionValue& Value);
+
+	/*Find Keybind for interaction keys*/
+	FString GetMappedKeys(UInputAction* QueryAction);
+
+	/* find what the player is looking at*/
+	void GetLookedAt();
+
+	/* find the Grid the player is looking at*/
+	AAPTG_PlaceableTileGrid* GetLookingAtGrid();
+
+	/* see if grid can be placed*/
+	bool CanPlace();
+
+	/* Try to place a tile on grid*/
+	void PlaceTile();
+
+	/* Get place location at grid*/
+	FVector GetLookingAtGridLocation();
+
+	/* display Preview*/
+	void DisplayPreview();
 
 protected:
 	// APawn interface
@@ -83,5 +141,20 @@ public:
 	/** Returns FirstPersonCameraComponent subobject **/
 	UCameraComponent* GetFirstPersonCameraComponent() const { return FirstPersonCameraComponent; }
 
+protected:
+	AActor* LookingAt;
+	FVector LookingAtLoc;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "CharactorSettings")
+	float m_LineTraceLength = 600.f;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "CharactorSettings")
+	int m_PreviewScale = 1;
+
+private:
+	int8 m_PreviewRotation = 0;
+	int8 m_TileTypeSelection = 1;
+
+	TArray<FName> TileTypeMap;
 };
 

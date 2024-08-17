@@ -9,11 +9,15 @@
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeModelVillageCharacter() {}
 // Cross Module References
+	COREUOBJECT_API UClass* Z_Construct_UClass_UClass();
 	ENGINE_API UClass* Z_Construct_UClass_ACharacter();
 	ENGINE_API UClass* Z_Construct_UClass_UCameraComponent_NoRegister();
+	ENGINE_API UClass* Z_Construct_UClass_UDataTable_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_USkeletalMeshComponent_NoRegister();
+	ENGINE_API UClass* Z_Construct_UClass_UStaticMeshComponent_NoRegister();
 	ENHANCEDINPUT_API UClass* Z_Construct_UClass_UInputAction_NoRegister();
 	ENHANCEDINPUT_API UClass* Z_Construct_UClass_UInputMappingContext_NoRegister();
+	MODELVILLAGE_API UClass* Z_Construct_UClass_AAPT_PlaceableTile_NoRegister();
 	MODELVILLAGE_API UClass* Z_Construct_UClass_AModelVillageCharacter();
 	MODELVILLAGE_API UClass* Z_Construct_UClass_AModelVillageCharacter_NoRegister();
 	UPackage* Z_Construct_UPackage__Script_ModelVillage();
@@ -155,6 +159,10 @@ void EmptyLinkFunctionForGeneratedCodeModelVillageCharacter() {}
 #endif
 		static const UECodeGen_Private::FObjectPropertyParams NewProp_FirstPersonCameraComponent;
 #if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_PlaceablePreviewMesh_MetaData[];
+#endif
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_PlaceablePreviewMesh;
+#if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_DefaultMappingContext_MetaData[];
 #endif
 		static const UECodeGen_Private::FObjectPropertyParams NewProp_DefaultMappingContext;
@@ -163,9 +171,25 @@ void EmptyLinkFunctionForGeneratedCodeModelVillageCharacter() {}
 #endif
 		static const UECodeGen_Private::FObjectPropertyParams NewProp_JumpAction;
 #if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_InteractAction_MetaData[];
+#endif
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_InteractAction;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_RotateAction_MetaData[];
+#endif
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_RotateAction;
+#if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_MoveAction_MetaData[];
 #endif
 		static const UECodeGen_Private::FObjectPropertyParams NewProp_MoveAction;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_TileTypeTable_MetaData[];
+#endif
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_TileTypeTable;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_TileType_MetaData[];
+#endif
+		static const UECodeGen_Private::FClassPropertyParams NewProp_TileType;
 #if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_LookAction_MetaData[];
 #endif
@@ -175,6 +199,14 @@ void EmptyLinkFunctionForGeneratedCodeModelVillageCharacter() {}
 #endif
 		static void NewProp_bHasRifle_SetBit(void* Obj);
 		static const UECodeGen_Private::FBoolPropertyParams NewProp_bHasRifle;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_m_LineTraceLength_MetaData[];
+#endif
+		static const UECodeGen_Private::FFloatPropertyParams NewProp_m_LineTraceLength;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_m_PreviewScale_MetaData[];
+#endif
+		static const UECodeGen_Private::FIntPropertyParams NewProp_m_PreviewScale;
 		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
 		static const UECodeGen_Private::FClassParams ClassParams;
@@ -226,6 +258,20 @@ void EmptyLinkFunctionForGeneratedCodeModelVillageCharacter() {}
 #endif
 	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AModelVillageCharacter_Statics::NewProp_FirstPersonCameraComponent = { "FirstPersonCameraComponent", nullptr, (EPropertyFlags)0x00400000000a001d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AModelVillageCharacter, FirstPersonCameraComponent), Z_Construct_UClass_UCameraComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_AModelVillageCharacter_Statics::NewProp_FirstPersonCameraComponent_MetaData), Z_Construct_UClass_AModelVillageCharacter_Statics::NewProp_FirstPersonCameraComponent_MetaData) };
 #if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AModelVillageCharacter_Statics::NewProp_PlaceablePreviewMesh_MetaData[] = {
+		{ "Category", "Mesh" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "/* Placeable preview*/" },
+#endif
+		{ "EditInline", "true" },
+		{ "ModuleRelativePath", "ModelVillageCharacter.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "Placeable preview" },
+#endif
+	};
+#endif
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AModelVillageCharacter_Statics::NewProp_PlaceablePreviewMesh = { "PlaceablePreviewMesh", nullptr, (EPropertyFlags)0x00400000000b0009, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AModelVillageCharacter, PlaceablePreviewMesh), Z_Construct_UClass_UStaticMeshComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_AModelVillageCharacter_Statics::NewProp_PlaceablePreviewMesh_MetaData), Z_Construct_UClass_AModelVillageCharacter_Statics::NewProp_PlaceablePreviewMesh_MetaData) };
+#if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AModelVillageCharacter_Statics::NewProp_DefaultMappingContext_MetaData[] = {
 		{ "AllowPrivateAccess", "true" },
 		{ "Category", "Input" },
@@ -254,6 +300,34 @@ void EmptyLinkFunctionForGeneratedCodeModelVillageCharacter() {}
 #endif
 	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AModelVillageCharacter_Statics::NewProp_JumpAction = { "JumpAction", nullptr, (EPropertyFlags)0x0040000000000015, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AModelVillageCharacter, JumpAction), Z_Construct_UClass_UInputAction_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_AModelVillageCharacter_Statics::NewProp_JumpAction_MetaData), Z_Construct_UClass_AModelVillageCharacter_Statics::NewProp_JumpAction_MetaData) };
 #if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AModelVillageCharacter_Statics::NewProp_InteractAction_MetaData[] = {
+		{ "AllowPrivateAccess", "true" },
+		{ "Category", "Input" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "/** Interact Input Action */" },
+#endif
+		{ "ModuleRelativePath", "ModelVillageCharacter.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "Interact Input Action" },
+#endif
+	};
+#endif
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AModelVillageCharacter_Statics::NewProp_InteractAction = { "InteractAction", nullptr, (EPropertyFlags)0x0040000000000015, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AModelVillageCharacter, InteractAction), Z_Construct_UClass_UInputAction_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_AModelVillageCharacter_Statics::NewProp_InteractAction_MetaData), Z_Construct_UClass_AModelVillageCharacter_Statics::NewProp_InteractAction_MetaData) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AModelVillageCharacter_Statics::NewProp_RotateAction_MetaData[] = {
+		{ "AllowPrivateAccess", "true" },
+		{ "Category", "Input" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "/** Rotate Input Action */" },
+#endif
+		{ "ModuleRelativePath", "ModelVillageCharacter.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "Rotate Input Action" },
+#endif
+	};
+#endif
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AModelVillageCharacter_Statics::NewProp_RotateAction = { "RotateAction", nullptr, (EPropertyFlags)0x0040000000000015, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AModelVillageCharacter, RotateAction), Z_Construct_UClass_UInputAction_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_AModelVillageCharacter_Statics::NewProp_RotateAction_MetaData), Z_Construct_UClass_AModelVillageCharacter_Statics::NewProp_RotateAction_MetaData) };
+#if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AModelVillageCharacter_Statics::NewProp_MoveAction_MetaData[] = {
 		{ "AllowPrivateAccess", "true" },
 		{ "Category", "Input" },
@@ -267,6 +341,35 @@ void EmptyLinkFunctionForGeneratedCodeModelVillageCharacter() {}
 	};
 #endif
 	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AModelVillageCharacter_Statics::NewProp_MoveAction = { "MoveAction", nullptr, (EPropertyFlags)0x0040000000000015, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AModelVillageCharacter, MoveAction), Z_Construct_UClass_UInputAction_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_AModelVillageCharacter_Statics::NewProp_MoveAction_MetaData), Z_Construct_UClass_AModelVillageCharacter_Statics::NewProp_MoveAction_MetaData) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AModelVillageCharacter_Statics::NewProp_TileTypeTable_MetaData[] = {
+		{ "AllowPrivateAccess", "true" },
+		{ "Category", "TileType" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "/** TileType DataTable */" },
+#endif
+		{ "ModuleRelativePath", "ModelVillageCharacter.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "TileType DataTable" },
+#endif
+	};
+#endif
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AModelVillageCharacter_Statics::NewProp_TileTypeTable = { "TileTypeTable", nullptr, (EPropertyFlags)0x0040000000000015, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AModelVillageCharacter, TileTypeTable), Z_Construct_UClass_UDataTable_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_AModelVillageCharacter_Statics::NewProp_TileTypeTable_MetaData), Z_Construct_UClass_AModelVillageCharacter_Statics::NewProp_TileTypeTable_MetaData) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AModelVillageCharacter_Statics::NewProp_TileType_MetaData[] = {
+		{ "AllowPrivateAccess", "true" },
+		{ "Category", "Tiles" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "/* Current TileType*/" },
+#endif
+		{ "ModuleRelativePath", "ModelVillageCharacter.h" },
+		{ "OnlyPlaceable", "" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "Current TileType" },
+#endif
+	};
+#endif
+	const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_AModelVillageCharacter_Statics::NewProp_TileType = { "TileType", nullptr, (EPropertyFlags)0x0044000000000015, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AModelVillageCharacter, TileType), Z_Construct_UClass_UClass, Z_Construct_UClass_AAPT_PlaceableTile_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_AModelVillageCharacter_Statics::NewProp_TileType_MetaData), Z_Construct_UClass_AModelVillageCharacter_Statics::NewProp_TileType_MetaData) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AModelVillageCharacter_Statics::NewProp_LookAction_MetaData[] = {
 		{ "AllowPrivateAccess", "true" },
@@ -298,14 +401,35 @@ void EmptyLinkFunctionForGeneratedCodeModelVillageCharacter() {}
 		((AModelVillageCharacter*)Obj)->bHasRifle = 1;
 	}
 	const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_AModelVillageCharacter_Statics::NewProp_bHasRifle = { "bHasRifle", nullptr, (EPropertyFlags)0x0010000000020015, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(AModelVillageCharacter), &Z_Construct_UClass_AModelVillageCharacter_Statics::NewProp_bHasRifle_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_AModelVillageCharacter_Statics::NewProp_bHasRifle_MetaData), Z_Construct_UClass_AModelVillageCharacter_Statics::NewProp_bHasRifle_MetaData) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AModelVillageCharacter_Statics::NewProp_m_LineTraceLength_MetaData[] = {
+		{ "Category", "CharactorSettings" },
+		{ "ModuleRelativePath", "ModelVillageCharacter.h" },
+	};
+#endif
+	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AModelVillageCharacter_Statics::NewProp_m_LineTraceLength = { "m_LineTraceLength", nullptr, (EPropertyFlags)0x0020080000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AModelVillageCharacter, m_LineTraceLength), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_AModelVillageCharacter_Statics::NewProp_m_LineTraceLength_MetaData), Z_Construct_UClass_AModelVillageCharacter_Statics::NewProp_m_LineTraceLength_MetaData) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AModelVillageCharacter_Statics::NewProp_m_PreviewScale_MetaData[] = {
+		{ "Category", "CharactorSettings" },
+		{ "ModuleRelativePath", "ModelVillageCharacter.h" },
+	};
+#endif
+	const UECodeGen_Private::FIntPropertyParams Z_Construct_UClass_AModelVillageCharacter_Statics::NewProp_m_PreviewScale = { "m_PreviewScale", nullptr, (EPropertyFlags)0x0020080000000005, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AModelVillageCharacter, m_PreviewScale), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_AModelVillageCharacter_Statics::NewProp_m_PreviewScale_MetaData), Z_Construct_UClass_AModelVillageCharacter_Statics::NewProp_m_PreviewScale_MetaData) };
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AModelVillageCharacter_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AModelVillageCharacter_Statics::NewProp_Mesh1P,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AModelVillageCharacter_Statics::NewProp_FirstPersonCameraComponent,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AModelVillageCharacter_Statics::NewProp_PlaceablePreviewMesh,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AModelVillageCharacter_Statics::NewProp_DefaultMappingContext,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AModelVillageCharacter_Statics::NewProp_JumpAction,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AModelVillageCharacter_Statics::NewProp_InteractAction,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AModelVillageCharacter_Statics::NewProp_RotateAction,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AModelVillageCharacter_Statics::NewProp_MoveAction,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AModelVillageCharacter_Statics::NewProp_TileTypeTable,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AModelVillageCharacter_Statics::NewProp_TileType,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AModelVillageCharacter_Statics::NewProp_LookAction,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AModelVillageCharacter_Statics::NewProp_bHasRifle,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AModelVillageCharacter_Statics::NewProp_m_LineTraceLength,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AModelVillageCharacter_Statics::NewProp_m_PreviewScale,
 	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_AModelVillageCharacter_Statics::StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<AModelVillageCharacter>::IsAbstract,
@@ -345,9 +469,9 @@ void EmptyLinkFunctionForGeneratedCodeModelVillageCharacter() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_Chiu_Cho_Hin_Documents_Unreal_Projects_ModelVillage_Source_ModelVillage_ModelVillageCharacter_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_AModelVillageCharacter, AModelVillageCharacter::StaticClass, TEXT("AModelVillageCharacter"), &Z_Registration_Info_UClass_AModelVillageCharacter, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AModelVillageCharacter), 4260330169U) },
+		{ Z_Construct_UClass_AModelVillageCharacter, AModelVillageCharacter::StaticClass, TEXT("AModelVillageCharacter"), &Z_Registration_Info_UClass_AModelVillageCharacter, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AModelVillageCharacter), 2008878172U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_Chiu_Cho_Hin_Documents_Unreal_Projects_ModelVillage_Source_ModelVillage_ModelVillageCharacter_h_11364663(TEXT("/Script/ModelVillage"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_Chiu_Cho_Hin_Documents_Unreal_Projects_ModelVillage_Source_ModelVillage_ModelVillageCharacter_h_1719176381(TEXT("/Script/ModelVillage"),
 		Z_CompiledInDeferFile_FID_Users_Chiu_Cho_Hin_Documents_Unreal_Projects_ModelVillage_Source_ModelVillage_ModelVillageCharacter_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_Chiu_Cho_Hin_Documents_Unreal_Projects_ModelVillage_Source_ModelVillage_ModelVillageCharacter_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);

@@ -10,6 +10,9 @@
 #include "EnhancedInputSubsystems.h"
 #include "InputActionValue.h"
 #include "Engine/LocalPlayer.h"
+#include "APTG_PlaceableTileGrid.h"
+#include "APT_PlaceableTile.h"
+#include "S_TileType.h"
 
 DEFINE_LOG_CATEGORY(LogTemplateCharacter);
 
@@ -39,6 +42,10 @@ AModelVillageCharacter::AModelVillageCharacter()
 	//Mesh1P->SetRelativeRotation(FRotator(0.9f, -19.19f, 5.2f));
 	Mesh1P->SetRelativeLocation(FVector(-30.f, 0.f, -150.f));
 
+	PlaceablePreviewMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("PlaceablePreviewMesh"));
+	PlaceablePreviewMesh->SetRelativeScale3D(FVector(m_PreviewScale, m_PreviewScale, m_PreviewScale));
+	PlaceablePreviewMesh->SetVisibility(false);
+
 }
 
 void AModelVillageCharacter::BeginPlay()
@@ -55,6 +62,12 @@ void AModelVillageCharacter::BeginPlay()
 		}
 	}
 
+	InitTileType();
+}
+
+void AModelVillageCharacter::Tick(float DeltaTime)
+{
+	DisplayPreview();
 }
 
 //////////////////////////////////////////////////////////////////////////// Input
@@ -73,6 +86,12 @@ void AModelVillageCharacter::SetupPlayerInputComponent(UInputComponent* PlayerIn
 
 		// Looking
 		EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &AModelVillageCharacter::Look);
+
+		// Interact
+		EnhancedInputComponent->BindAction(InteractAction, ETriggerEvent::Started, this, &AModelVillageCharacter::Interact);
+
+		// Rotate
+		EnhancedInputComponent->BindAction(RotateAction, ETriggerEvent::Started, this, &AModelVillageCharacter::Rotate);
 	}
 	else
 	{
@@ -105,6 +124,38 @@ void AModelVillageCharacter::Look(const FInputActionValue& Value)
 		AddControllerYawInput(LookAxisVector.X);
 		AddControllerPitchInput(LookAxisVector.Y);
 	}
+	GetLookedAt();
+}
+
+void AModelVillageCharacter::Interact(const FInputActionValue& Value)
+{
+	GetMappedKeys(InteractAction);
+
+	PlaceTile();
+}
+
+void AModelVillageCharacter::Rotate(const FInputActionValue& Value)
+{
+	m_PreviewRotation++;
+	if (m_PreviewRotation >= 4) {
+		m_PreviewRotation = 0;
+	}
+	PlaceablePreviewMesh->AddLocalRotation(FRotator(0, 90 ,0));
+}
+
+FString AModelVillageCharacter::GetMappedKeys(UInputAction* QueryAction)
+{
+	if (APlayerController* PlayerController = Cast<APlayerController>(Controller))
+	{
+		if (UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(PlayerController->GetLocalPlayer()))
+		{
+			auto keys = Subsystem->QueryKeysMappedToAction(QueryAction);
+			if (!keys.IsEmpty()) {
+				return keys[0].ToString();
+			}
+		}
+	}
+	return "N/A";
 }
 
 void AModelVillageCharacter::SetHasRifle(bool bNewHasRifle)
@@ -115,4 +166,111 @@ void AModelVillageCharacter::SetHasRifle(bool bNewHasRifle)
 bool AModelVillageCharacter::GetHasRifle()
 {
 	return bHasRifle;
+}
+
+void AModelVillageCharacter::InitTileType()
+{
+	TileTypeMap = TileTypeTable->GetRowNames();
+
+	FS_TileType* row = TileTypeTable->FindRow<FS_TileType>(TileTypeMap[m_TileTypeSelection], "", true);
+	SetTileType(row);
+}
+
+void AModelVillageCharacter::SetTileType(FS_TileType* row)
+{
+	TileType = row->TileType;
+	PlaceablePreviewMesh->SetStaticMesh(row->PreviewMesh);
+}
+
+void AModelVillageCharacter::GetLookedAt()
+{
+	FVector Start;
+	FVector End;
+
+	FVector PlayerEyesLoc;
+	FRotator PlayerEyesRot;
+
+	GetActorEyesViewPoint(PlayerEyesLoc, PlayerEyesRot);
+
+	float LineTraceDistance = m_LineTraceLength * m_PreviewScale;
+
+	Start = PlayerEyesLoc;
+	End = PlayerEyesLoc + (PlayerEyesRot.Vector() * LineTraceDistance);
+
+	FCollisionQueryParams TraceParams(FName(TEXT("LookAtTrace")), true, this);
+
+	FHitResult InteractHit = FHitResult(ForceInit);
+
+	// get hit object type
+	FCollisionObjectQueryParams ObjectTypeParams;
+	ObjectTypeParams.AddObjectTypesToQuery(ECC_WorldStatic);
+	ObjectTypeParams.AddObjectTypesToQuery(ECC_WorldDynamic);
+	ObjectTypeParams.AddObjectTypesToQuery(ECC_GameTraceChannel2);
+	ObjectTypeParams.AddObjectTypesToQuery(ECC_GameTraceChannel3);
+	ObjectTypeParams.AddObjectTypesToQuery(ECC_GameTraceChannel4);
+
+	bool hasObject = false;
+	bool bIsHit = GetWorld()->LineTraceSingleByObjectType(InteractHit, Start, End, ObjectTypeParams, TraceParams);
+	if(bIsHit)
+		LookingAtLoc = InteractHit.ImpactPoint;
+	if (bIsHit && InteractHit.GetActor() != this) {
+		DrawDebugLine(GetWorld(), LookingAtLoc, LookingAtLoc + FVector(0,0,10), FColor::Red, false, -1, 0, 5);
+		if (LookingAt != InteractHit.GetActor()) {
+			LookingAt = InteractHit.GetActor();
+			hasObject = true;
+		}
+		else {
+			hasObject = true;
+		}
+
+	}
+
+	if (!hasObject) {
+		LookingAt = nullptr;
+	}
+}
+
+AAPTG_PlaceableTileGrid* AModelVillageCharacter::GetLookingAtGrid()
+{
+	if (LookingAt->GetClass()->IsChildOf(AAPTG_PlaceableTileGrid::StaticClass())) {
+		AAPTG_PlaceableTileGrid* tileGrid = Cast<AAPTG_PlaceableTileGrid>(LookingAt);
+		return tileGrid;
+	}
+	return nullptr;
+}
+
+bool AModelVillageCharacter::CanPlace()
+{
+	if (!LookingAt)
+		return false;
+	AAPTG_PlaceableTileGrid* tileGrid = GetLookingAtGrid();
+	if (tileGrid == nullptr)
+		return false;
+	return tileGrid->CanPlaceTile(LookingAtLoc);
+}
+
+void AModelVillageCharacter::PlaceTile()
+{
+	if (!CanPlace())
+		return;
+	AAPTG_PlaceableTileGrid* tileGrid = GetLookingAtGrid();
+	tileGrid->AddTileToLooking(LookingAtLoc, m_PreviewRotation, TileType);
+}
+
+FVector AModelVillageCharacter::GetLookingAtGridLocation()
+{
+	if (!CanPlace())
+		return FVector::ZeroVector;
+	AAPTG_PlaceableTileGrid* tileGrid = GetLookingAtGrid();
+	return tileGrid->GetTileLoc(LookingAtLoc);
+}
+
+void AModelVillageCharacter::DisplayPreview()
+{
+	if (!CanPlace())
+		PlaceablePreviewMesh->SetVisibility(false);
+
+	PlaceablePreviewMesh->SetRelativeScale3D(FVector(m_PreviewScale, m_PreviewScale, m_PreviewScale));
+	PlaceablePreviewMesh->SetWorldLocation(GetLookingAtGridLocation());
+	PlaceablePreviewMesh->SetVisibility(true);
 }

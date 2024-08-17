@@ -4,12 +4,24 @@
 
 #include "CoreMinimal.h"
 
+#include "Engine/DataTable.h"
+
+#include "S_TileType.generated.h"
+
 /**
  * 
  */
-class MODELVILLAGE_API S_TileType
+USTRUCT(BlueprintType)
+struct FS_TileType : public FTableRowBase
 {
+    GENERATED_USTRUCT_BODY()
+
 public:
-	S_TileType();
-	~S_TileType();
+    // PreviewMesh. 
+    UPROPERTY(EditAnywhere, BlueprintReadWrite)
+    class UStaticMesh* PreviewMesh;
+
+    // APT_PlaceableTile. 
+    UPROPERTY(EditAnywhere, BlueprintReadWrite)
+    TSubclassOf<class AAPT_PlaceableTile> TileType;
 };
